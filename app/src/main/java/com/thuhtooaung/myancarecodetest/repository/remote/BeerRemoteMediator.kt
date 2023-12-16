@@ -1,6 +1,5 @@
 package com.thuhtooaung.myancarecodetest.repository.remote
 
-import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -27,12 +26,14 @@ class BeerRemoteMediator(
                 LoadType.PREPEND -> return MediatorResult.Success(endOfPaginationReached = true)
                 LoadType.APPEND -> {
                     val lastItem = state.lastItemOrNull()
-                    Log.d("LITEM", lastItem.toString())
-                    lastItem ?: return MediatorResult.Success(endOfPaginationReached = true)
-                    if (lastItem.id % 20 == 0) {
-                        (lastItem.id / state.config.pageSize) + 1
+                    if (lastItem == null) {
+                        1
                     } else {
-                        (lastItem.id / state.config.pageSize) + 2
+                        if (lastItem.id % state.config.pageSize == 0) {
+                            (lastItem.id / state.config.pageSize) + 1
+                        } else {
+                            (lastItem.id / state.config.pageSize) + 2
+                        }
                     }
                 }
             }

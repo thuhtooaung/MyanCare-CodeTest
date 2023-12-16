@@ -1,7 +1,7 @@
 package com.thuhtooaung.myancarecodetest.data.mapper
 
-import com.thuhtooaung.myancarecodetest.data.model.Beer
 import com.thuhtooaung.myancarecodetest.data.local.BeerEntity
+import com.thuhtooaung.myancarecodetest.data.model.Beer
 import com.thuhtooaung.myancarecodetest.data.remote.BeerDto
 
 fun BeerDto.toBeerEntity(): BeerEntity {
